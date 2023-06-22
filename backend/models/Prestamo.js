@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const PrestamoSchema = mongoose.Schema({
     
-    Idpelicula: {
+    _id: {
         type: Number,
         require: true
     },
@@ -14,11 +14,11 @@ const PrestamoSchema = mongoose.Schema({
         type: String,
         require: true
     },
-    NumerodeCinta: {
+    cintaNumero: {
         type: Number,
         require: true
     },
-    fechaPrestamo: {
+    fecha: {
         type: Date,
         default: Date.now()
     }

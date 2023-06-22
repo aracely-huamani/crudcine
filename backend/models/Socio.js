@@ -14,15 +14,15 @@ const SocioSchema = mongoose.Schema({
         type: String,
         require: true
     },
-    directores_favorito: {
+    directoresFavoritos: {
         type: Number,
         require: true
     },
-    actores_favoritos: {
+    actoresFavoritos: {
         type: Date,
         default: Date.now()
     },
-    genero_favorito: {
+    generosPreferidos: {
         type: Date,
         default: Date.now()
     }
