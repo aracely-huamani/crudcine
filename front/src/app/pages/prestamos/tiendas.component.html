@@ -1,0 +1,74 @@
+<app-navbar></app-navbar>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row m-t-sm">
+            <div class="col-md-15">
+                <div class="panel">
+                    <div class="panel-body">
+                        <div class="col-md-12 col-sm-12" id="form" style="display:block;">
+                            <div class="panel panel-filled">
+                                <div class="panel-body">
+                                    <div class="view-header">
+                                        <div class="header-icon">
+                                            <i class="pe page-header-icon pe-7s-map"></i>
+                                        </div>
+                                        <div class="header-title">
+                                            <h3>Locales</h3>
+                                            <small>
+                                                Ubicación de Nuestras Tiendas
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <div class="map">
+                                        <google-map height="50vh" width="100%" [options]="mapOptions"
+                                            (mapInitialized)="handleMapInitialized($event)">
+                                        </google-map>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12" id="form" style="display:block;">
+                            <div class="panel panel-filled">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h5 class="m-t-xs">Ubicación de Nuestros Locales - Lima</h5>
+                                        </div>
+                                        <div class="col-sm-12 text-right">
+                                            <a id="btnNuevo" class="btn btn-w-md btn-info"
+                                                routerLink="/crear-tiendas">Nueva Tienda</a>&nbsp;&nbsp;
+                                        </div>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table *ngIf="listTiendas.length > 0" class="table table-hover table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Departamento</th>
+                                                    <th>Distrito</th>
+                                                    <th>Cantidad</th>
+                                                    <th>Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="datos">
+                                                <tr *ngFor="let tienda of listTiendas">
+                                                    <td>{{ tienda.departamento }}</td>
+                                                    <td>{{ tienda.distrito }}</td>
+                                                    <td>{{ tienda.cantidad }}</td>
+                                                    <td>
+                                                        <i (click)="verTiendas(tienda.distrito)" style="font-size: 25px;" class="pe pe-7s-look text-accent"></i>&nbsp;&nbsp;
+                                                        <i (click)="eliminarTienda(tienda._id)" style="font-size: 25px;" class="pe pe-7s-trash text-accent"></i>&nbsp;&nbsp;
+                                                        <i [routerLink]="['/editar-tienda', tienda._id]" style="font-size: 25px;" class="pe pe-7s-pen text-accent"></i>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
