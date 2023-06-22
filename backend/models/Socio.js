@@ -1,33 +1,34 @@
 const mongoose = require('mongoose');
 
 const SocioSchema = mongoose.Schema({
-    
-    nombre: {
-        type: String,
-        require: true
-    },
-    direccion: {
-        type: String,
-        require: true
-    },
-    telefono: {
-        type: String,
-        require: true
-    },
-    directoresFavoritos: {
-        type: Number,
-        require: true
-    },
-    actoresFavoritos: {
-        type: Date,
-        default: Date.now()
-    },
-    generosPreferidos: {
-        type: Date,
-        default: Date.now()
-    }
-    
-    
+  _id: {
+    type: String,
+    required: true
+  },
+  nombre: {
+    type: String,
+    required: true
+  },
+  direccion: {
+    type: String,
+    required: true
+  },
+  telefono: {
+    type: String,
+    required: true
+  },
+  directoresFavoritos: {
+    type: [String],
+    required: true
+  },
+  actoresFavoritos: {
+    type: [String],
+    required: true
+  },
+  generosPreferidos: {
+    type: [String],
+    required: true
+  }
 });
 
-module.exports = mongoose.model('Socio', SocioSchema)
+module.exports = mongoose.model('Socio', SocioSchema);
