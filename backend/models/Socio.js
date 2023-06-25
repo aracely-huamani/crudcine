@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const SocioSchema = mongoose.Schema({
-  _id: {
+  id: {
     type: String,
     required: true
   },

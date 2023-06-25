@@ -13,6 +13,12 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { CrearSociosComponent } from './pages/socio/crear-socios/crear-socios.component';
 import { EditarSociosComponent } from './pages/socio/editar-socios/editar-socios.component';
 import { ListarSociosComponent } from './pages/socio/listar-socios/listar-socios.component';
+import { CrearPrestamoComponent } from './pages/prestamos/crear-prestamos/crear-prestamos.component';
+import { EditarPrestamoComponent } from './pages/prestamos/editar-prestamos/editar-prestamos.component';
+import { ListarPrestamosComponent } from './pages/prestamos/listar-prestamos/listar-prestamos.component';
+import { CrearPeliculaComponent } from './pages/pelicula/crear-peliculas/crear-peliculas.component';
+import { EditarPeliculaComponent } from './pages/pelicula/editar-peliculas/editar-peliculas.component';
+import { ListarPeliculasComponent } from './pages/pelicula/listar-peliculas/listar-peliculas.component';
 
 
 @NgModule({
@@ -23,7 +29,15 @@ import { ListarSociosComponent } from './pages/socio/listar-socios/listar-socios
     NavbarComponent,
     ListarSociosComponent,
     CrearSociosComponent,
-    EditarSociosComponent
+    EditarSociosComponent,
+    EditarPrestamoComponent,
+    ListarPrestamosComponent,
+    CrearPrestamoComponent,
+    CrearPeliculaComponent,
+    EditarPeliculaComponent,
+    ListarPeliculasComponent,
+
+
   ],
   imports: [
     BrowserModule,

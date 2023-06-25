@@ -1,66 +1,47 @@
 <app-navbar></app-navbar>
+
 <section class="content">
   <div class="container-fluid">
     <div class="row m-t-sm">
-      <div class="col-md-15">
+      <div class="col-md-12">
         <div class="panel">
           <div class="panel-body">
             <div class="col-md-12 col-sm-12" id="form" style="display:block;">
               <div class="panel panel-filled">
                 <div class="panel-body">
                   <div class="row">
-                    <div class="col-sm-12"><h5 class="m-t-xs">Ingreso de Socio</h5></div>
+                    <div class="col-sm-12">
+                      <h5 class="m-t-xs">Lista de Socios</h5>
+                    </div>
                   </div>
-                  <form [formGroup]="socioForm" (ngSubmit)="obtenerSocios()">
-                    <div class="form-group">
-                      <label>Nombre</label>
-                      <input type="text" formControlName="nombre" class="form-control" placeholder="Ingresar Nombre">
-                      <div class="text-danger" *ngIf="socioForm.get('nombre')?.hasError('required') && socioForm.get('nombre')?.touched">
-                        <span>El nombre <strong>es obligatorio</strong></span>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label>Dirección</label>
-                      <input type="text" formControlName="direccion" class="form-control" placeholder="Ingresar Dirección">
-                      <div class="text-danger" *ngIf="socioForm.get('direccion')?.hasError('required') && socioForm.get('direccion')?.touched">
-                        <span>La dirección <strong>es obligatoria</strong></span>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label>Teléfono</label>
-                      <input type="text" formControlName="telefono" class="form-control" placeholder="Ingresar Teléfono">
-                      <div class="text-danger" *ngIf="socioForm.get('telefono')?.hasError('required') && socioForm.get('telefono')?.touched">
-                        <span>El teléfono <strong>es obligatorio</strong></span>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label>Directores Favoritos</label>
-                      <input type="text" formControlName="directoresFavoritos" class="form-control" placeholder="Ingresar Directores Favoritos">
-                      <div class="text-danger" *ngIf="socioForm.get('directoresFavoritos')?.hasError('required') && socioForm.get('directoresFavoritos')?.touched">
-                        <span>Los directores favoritos <strong>son obligatorios</strong></span>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label>Actores Favoritos</label>
-                      <input type="text" formControlName="actoresFavoritos" class="form-control" placeholder="Ingresar Actores Favoritos">
-                      <div class="text-danger" *ngIf="socioForm.get('actoresFavoritos')?.hasError('required') && socioForm.get('actoresFavoritos')?.touched">
-                        <span>Los actores favoritos <strong>son obligatorios</strong></span>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label>Géneros Preferidos</label>
-                      <input type="text" formControlName="generosPreferidos" class="form-control" placeholder="Ingresar Géneros Preferidos">
-                      <div class="text-danger" *ngIf="socioForm.get('generosPreferidos')?.hasError('required') && socioForm.get('generosPreferidos')?.touched">
-                        <span>Los géneros preferidos <strong>son obligatorios</strong></span>
-                      </div>
-                    </div>
-                    <div class="col-sm-12 text-right">
-                      <div class="panel-body buttons-margin">
-                        <button type="submit" [disabled]="socioForm.invalid" class="btn btn-w-md btn-success">Guardar</button>&nbsp;&nbsp;
-                        <button class="btn btn-w-md btn-warning" routerLink="/listar-socios">Cancelar</button>
-                      </div>
-                    </div>
-                  </form>
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>id</th>
+                        <th>Nombre</th>
+                        <th>Dirección</th>
+                        <th>Teléfono</th>
+                        <th>Directores Favoritos</th>
+                        <th>Actores Favoritos</th>
+                        <th>Géneros Preferidos</th>
+                        <th>Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let socio of listSocios">
+                        <td>{{ socio.id }}</td>
+                        <td>{{ socio.nombre }}</td>
+                        <td>{{ socio.direccion }}</td>
+                        <td>{{ socio.telefono }}</td>
+                        <td>{{ socio.directoresFavoritos }}</td>
+                        <td>{{ socio.actoresFavoritos }}</td>
+                        <td>{{ socio.generosPreferidos }}</td>
+                        <td>
+                            <button class="btn btn-w-md btn-danger" (click)="eliminarSocio(socio.id)">Eliminar</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>

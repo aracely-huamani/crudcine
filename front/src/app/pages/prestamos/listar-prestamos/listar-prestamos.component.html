@@ -1,0 +1,46 @@
+<app-navbar></app-navbar>
+<section class="content">
+  <div class="container-fluid">
+    <div class="row m-t-sm">
+      <div class="col-md-15">
+        <div class="panel">
+          <div class="panel-body">
+            <div class="col-md-12 col-sm-12" id="form" style="display:block;">
+              <div class="panel panel-filled">
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-sm-12"><h5 class="m-t-xs">Listado de Préstamos</h5></div>
+                  </div>
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Id</th>
+                        <th>Socio</th>
+                        <th>Estado</th>
+                        <th>Fecha</th>
+                        <th>Número de Cinta</th>
+                        <th>Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let prestamo of listPrestamos">
+                        <td>{{ prestamo._id }}</td>
+                        <td>{{ prestamo.socio }}</td>
+                        <td>{{ prestamo.estado }}</td>
+                        <td>{{ prestamo.fecha }}</td>
+                        <td>{{ prestamo.cintaNumero }}</td>
+                        <td>
+                          <button class="btn btn-w-md btn-danger" (click)="eliminarPrestamo(prestamo._id)">Eliminar</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

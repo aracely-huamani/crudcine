@@ -1,41 +1,49 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Tienda } from 'src/app/models/tienda';
-import { TiendaService } from 'src/app/services/socio.service';
-import Swal from 'sweetalert2'
+import { Pelicula } from 'src/app/models/pelicula';
+import { PeliculaService } from 'src/app/services/pelicula.service';
+import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-crear-tiendas',
-  templateUrl: './crear-tiendas.component.html',
-  styleUrls: ['./crear-tiendas.component.css']
+  selector: 'app-crear-pelicula',
+  templateUrl: './crear-peliculas.component.html',
+  styleUrls: ['./crear-peliculas.component.css']
 })
-export class CrearTiendasComponent {
-  tiendaForm: FormGroup;
+export class CrearPeliculaComponent implements OnInit {
+  peliculaForm: FormGroup;
 
-  constructor(private fb: FormBuilder,
-              private router: Router,
-              private _tiendaService: TiendaService){
-    this.tiendaForm = this.fb.group({
-        departamento:  ['', Validators.required],
-        distrito: ['', Validators.required],
-        cantidad: ['', Validators.required]
-    })
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private peliculaService: PeliculaService
+  ) {
+    this.peliculaForm = this.fb.group({
+      titulo: ['', Validators.required],
+      genero: ['', Validators.required],
+      director: ['', Validators.required],
+      actores: ['', Validators.required]
+    });
   }
 
-  agregarTienda(){
+  ngOnInit(): void {
+  }
 
-    const TIENDA: Tienda = {
-      departamento: this.tiendaForm.get('departamento')?.value,
-      distrito: this.tiendaForm.get('distrito')?.value,
-      cantidad: this.tiendaForm.get('cantidad')?.value,
+  agregarPelicula() {
+    if (this.peliculaForm.invalid) {
+      return;
     }
 
-    console.log(TIENDA)
+    const pelicula: Pelicula = {
+      titulo: this.peliculaForm.value.titulo,
+      genero: this.peliculaForm.value.genero,
+      director: this.peliculaForm.value.director,
+      actores: this.peliculaForm.value.actores.split(',').map((item: string) => item.trim())
+    };
 
     Swal.fire({
-      title: 'Creacion de Tienda',
-      text: "¿Desea crear la tienda?",
+      title: 'Creación de Película',
+      text: '¿Desea crear la película?',
       icon: 'info',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -44,13 +52,11 @@ export class CrearTiendasComponent {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this._tiendaService.guardarTienda(TIENDA).subscribe(data =>{
-          console.log(data);  
-          this.router.navigate(['/tiendas'])
-        }) 
+        this.peliculaService.guardarPelicula(pelicula).subscribe(data => {
+          console.log(data);
+          this.router.navigate(['/listar-peliculas']);
+        });
       }
-    })    
+    });
   }
-
-    //console.log(this.productoForm)
 }

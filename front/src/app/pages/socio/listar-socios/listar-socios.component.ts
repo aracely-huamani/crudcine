@@ -50,15 +50,15 @@ export class ListarSociosComponent implements OnInit {
 
   eliminarSocio(id: string) {
     Swal.fire({
-      title: 'Eliminación de Socio',
-      text: "¿Desea eliminar el socio?",
+      title: 'Eliminación de socio',
+      text: '¿Desea eliminar el socio?',
       icon: 'info',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Aceptar',
       cancelButtonText: 'Cancelar'
-    }).then((result) => {
+    }).then(result => {
       if (result.isConfirmed) {
         this._socioService.deleteSocio(id).subscribe(data => {
           console.log(data);

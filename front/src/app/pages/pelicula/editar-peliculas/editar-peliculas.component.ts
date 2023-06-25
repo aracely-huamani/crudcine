@@ -1,77 +1,77 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Tienda } from 'src/app/models/tienda';
-import { TiendaService } from 'src/app/services/socio.service';
-import Swal from 'sweetalert2'
+import { Pelicula } from 'src/app/models/pelicula';
+import { PeliculaService } from 'src/app/services/pelicula.service';
+import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-editar-tiendas',
-  templateUrl: './editar-tiendas.component.html',
-  styleUrls: ['./editar-tiendas.component.css']
+  selector: 'app-editar-pelicula',
+  templateUrl: './editar-peliculas.component.html',
+  styleUrls: ['./editar-peliculas.component.css']
 })
-export class EditarTiendasComponent implements OnInit{
-  tiendaForm: FormGroup;
-  id: string | null; 
-  constructor(private fb: FormBuilder,
-              private aRouter: ActivatedRoute,
-              private router: Router,
-              private _tiendaService: TiendaService){
-    this.tiendaForm = this.fb.group({
-        departamento: ['', Validators.required],
-        distrito: ['', Validators.required],
-        cantidad: ['', Validators.required]
-    })
+export class EditarPeliculaComponent implements OnInit {
+  peliculaForm: FormGroup;
+  id: string | null;
+
+  constructor(
+    private fb: FormBuilder,
+    private aRouter: ActivatedRoute,
+    private router: Router,
+    private peliculaService: PeliculaService
+  ) {
+    this.peliculaForm = this.fb.group({
+      titulo: ['', Validators.required],
+      genero: ['', Validators.required],
+      director: ['', Validators.required],
+      actores: ['', Validators.required]
+    });
     this.id = aRouter.snapshot.paramMap.get('id');
   }
 
   ngOnInit(): void {
-    
-    this.validarId()
-
+    this.validarId();
   }
 
-  validarId(){
-
-    if(this.id !== null){
-      this._tiendaService.viewTienda(this.id).subscribe(data => {
-        this.tiendaForm.setValue({
-          departamento: data.departamento,
-          distrito: data.distrito,
-          cantidad: data.cantidad
-        })
-      })
+  validarId() {
+    if (this.id !== null) {
+      this.peliculaService.getPelicula(this.id).subscribe(data => {
+        this.peliculaForm.setValue({
+          titulo: data.titulo,
+          genero: data.genero,
+          director: data.director,
+          actores: data.actores.join(', ')
+        });
+      });
     }
-
   }
 
-  editarTienda(){
-    
-    const TIENDA: Tienda = {
-      departamento: this.tiendaForm.get('departamento')?.value,
-      distrito: this.tiendaForm.get('distrito')?.value,
-      cantidad: this.tiendaForm.get('cantidad')?.value,
-    }
+  editarPelicula() {
+    const pelicula: Pelicula = {
+      titulo: this.peliculaForm.get('titulo')?.value,
+      genero: this.peliculaForm.get('genero')?.value,
+      director: this.peliculaForm.get('director')?.value,
+      actores: this.peliculaForm.get('actores')?.value.split(',').map((item: string) => item.trim())
+    };
 
     Swal.fire({
-          title: 'Actualizacion de Tienda',
-          text: "¿Desea actualizar la Tienda?",
-          icon: 'info',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Aceptar',
-          cancelButtonText: 'Cancelar'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            if(this.id !== null){
-              this._tiendaService.actualizarTienda(this.id, TIENDA).subscribe(data => {
-                  console.log(TIENDA);
-                  this.router.navigate(['/tiendas']) 
-              })
-            }
-          }
-        })
-           
+      title: 'Actualización de Película',
+      text: '¿Desea actualizar la película?',
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if (this.id !== null) {
+          this.peliculaService.actualizarPelicula(this.id, pelicula).subscribe(data => {
+            console.log(pelicula);
+            this.router.navigate(['/listar-peliculas']);
+          });
+        }
+      }
+    });
   }
 }
