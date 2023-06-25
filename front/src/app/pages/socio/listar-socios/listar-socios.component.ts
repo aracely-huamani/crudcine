@@ -1,80 +1,71 @@
 import { Component, OnInit } from '@angular/core';
-import { Producto } from 'src/app/models/producto';
-import { ProductoService } from 'src/app/services/producto.service';
-import Swal from 'sweetalert2'
-
-//Libreria para crear el pdf
-import * as pdfMake from  'pdfmake/build/pdfmake';
-import * as pdfFonts from 'pdfmake/build/vfs_fonts';
-(<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
+import { Socio } from 'src/app/models/socio';
+import { SocioService } from 'src/app/services/socio.service';
+import Swal from 'sweetalert2';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-listar-productos',
-  templateUrl: './listar-productos.component.html',
-  styleUrls: ['./listar-productos.component.css']
+  selector: 'app-listar-socios',
+  templateUrl: './listar-socios.component.html',
+  styleUrls: ['./listar-socios.component.css']
 })
-export class ListarProductosComponent implements OnInit{
-  
-  listProductos: Producto[] = [];
+export class ListarSociosComponent implements OnInit {
+  socioForm: FormGroup;
+  listSocios: Socio[] = [];
   elementos: number = 0;
-  
-  constructor(private _productoService: ProductoService) {
 
+  constructor(
+    private _socioService: SocioService,
+    private fb: FormBuilder
+  ) {
+    this.socioForm = this.fb.group({
+      nombre: ['', Validators.required],
+      direccion: ['', Validators.required],
+      telefono: ['', Validators.required],
+      directoresFavoritos: ['', Validators.required],
+      actoresFavoritos: ['', Validators.required],
+      generosPreferidos: ['', Validators.required]
+    });
   }
   
   ngOnInit(): void {
-    
-    this.obtenerProductos();
-
-  }
-
-  openPdfTables() {
-    const documentDefinition: any = {
-      content: [
-        {
-          table: {
-            headerRows: 1,
-            widths: ['*', 'auto', 100, '*'],
-            body: [
-              [{ text: 'Nombre', bold: true }, { text: 'Categoria', bold: true }, { text: 'Ubicacion', bold: true }, { text: 'Precio', bold: true }],
-              ...this.listProductos.map(producto => [producto.producto, producto.categoria, producto.ubicacion, producto.precio])
-            ]
-          }
-        }
-      ]
-    };
-    pdfMake.createPdf(documentDefinition).open();
-  }
-  
-
-  obtenerProductos(){
-    this._productoService.getProductos().subscribe(data => {
-      console.log(data);
-      this.listProductos = data;
-      this.elementos = this.listProductos.length;
-      
+    this.obtenerSocios();
+    this.socioForm = this.fb.group({
+      nombre: ['', Validators.required],
+      direccion: ['', Validators.required],
+      telefono: ['', Validators.required],
+      directoresFavoritos: ['', Validators.required],
+      actoresFavoritos: ['', Validators.required],
+      generosPreferidos: ['', Validators.required]
     });
   }
 
-  eliminarProducto(id: any){
-      Swal.fire({
-        title: 'Eliminacion de Producto',
-        text: "¿Desea eliminar el producto?",
-        icon: 'info',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Aceptar',
-        cancelButtonText: 'Cancelar'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this._productoService.deleteProducto(id).subscribe(data => {
+  obtenerSocios() {
+    this._socioService.getSocios().subscribe(data => {
+      console.log(data);
+      this.listSocios = data;
+      this.elementos = this.listSocios.length;
+    });
+  }
+
+  eliminarSocio(id: string) {
+    Swal.fire({
+      title: 'Eliminación de Socio',
+      text: "¿Desea eliminar el socio?",
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this._socioService.deleteSocio(id).subscribe(data => {
           console.log(data);
-          this.obtenerProductos();
-          this.elementos = this.listProductos.length;
+          this.obtenerSocios();
+          this.elementos = this.listSocios.length;
         });
       }
     });
   }
-
 }

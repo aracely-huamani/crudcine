@@ -8,14 +8,11 @@ import { HttpClientModule } from '@angular/common/http'
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/users/login/login.component';
 import { CreateUserComponent } from './pages/users/create-user/create-user.component';
-import { ListarProductosComponent } from './pages/productos/listar-productos/listar-productos.component';
-import { CrearProductosComponent } from './pages/productos/crear-productos/crear-productos.component';
 import { NavbarComponent } from './pages/navbar/navbar.component';
-import { EditarProductosComponent } from './pages/productos/editar-productos/editar-productos.component';
-import { TiendasComponent } from './pages/tiendas/tiendas.component';
 import { GoogleMapsModule } from '@angular/google-maps';
-import { CrearTiendasComponent } from './pages/tiendas/crear-tiendas/crear-tiendas.component';
-import { EditarTiendasComponent } from './pages/tiendas/editar-tiendas/editar-tiendas.component';
+import { CrearSociosComponent } from './pages/socio/crear-socios/crear-socios.component';
+import { EditarSociosComponent } from './pages/socio/editar-socios/editar-socios.component';
+import { ListarSociosComponent } from './pages/socio/listar-socios/listar-socios.component';
 
 
 @NgModule({
@@ -23,20 +20,17 @@ import { EditarTiendasComponent } from './pages/tiendas/editar-tiendas/editar-ti
     AppComponent,
     LoginComponent,
     CreateUserComponent,
-    ListarProductosComponent,
-    CrearProductosComponent,
     NavbarComponent,
-    EditarProductosComponent,
-    TiendasComponent,
-    CrearTiendasComponent,
-    EditarTiendasComponent
+    ListarSociosComponent,
+    CrearSociosComponent,
+    EditarSociosComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    GoogleMapsModule
+    GoogleMapsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

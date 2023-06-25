@@ -37,7 +37,7 @@ export class EditarSociosComponent implements OnInit {
 
   validarId() {
     if (this.id !== null) {
-      this._socioService.verSocio(this.id).subscribe(data => {
+      this._socioService.getSocios(this.id).subscribe(data => {
         this.socioForm.setValue({
           nombre: data.nombre,
           direccion: data.direccion,

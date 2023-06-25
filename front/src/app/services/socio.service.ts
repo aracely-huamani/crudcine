@@ -8,9 +8,16 @@ import { Socio } from '../models/socio';
 })
 export class SocioService {
   url = 'http://localhost:4000/api/socios/';
+  pdf = 'http://localhost:4000/api/socios-PDF/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
 
+  }
+
+  getPDF(): Observable<any> {
+    return this.http.get(this.pdf, { responseType: 'blob' })
+  }
+  
   getSocios(): Observable<any> {
     return this.http.get(this.url);
   }

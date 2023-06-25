@@ -1,44 +1,50 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Producto } from 'src/app/models/producto';
-import { ProductoService } from 'src/app/services/producto.service';
-import Swal from 'sweetalert2'
+import { Socio } from 'src/app/models/socio';
+import { SocioService } from 'src/app/services/socio.service';
+import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-crear-productos',
-  templateUrl: './crear-productos.component.html',
-  styleUrls: ['./crear-productos.component.css']
+  selector: 'app-crear-socios',
+  templateUrl: './crear-socios.component.html',
+  styleUrls: ['./crear-socios.component.css']
 })
-export class CrearProductosComponent {
+export class CrearSociosComponent {
+  socioForm: FormGroup;
 
-  productoForm: FormGroup;
-
-  constructor(private fb: FormBuilder,
-              private router: Router,
-              private _productoService: ProductoService){
-    this.productoForm = this.fb.group({
-        producto:  ['', Validators.required],
-        categoria: ['', Validators.required],
-        ubicacion: ['', Validators.required],
-        precio:    ['', Validators.required]
-    })
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private socioService: SocioService
+  ) {
+    this.socioForm = this.fb.group({
+      nombre: ['', Validators.required],
+      direccion: ['', Validators.required],
+      telefono: ['', Validators.required],
+      directoresFavoritos: ['', Validators.required],
+      actoresFavoritos: ['', Validators.required],
+      generosPreferidos: ['', Validators.required]
+    });
   }
 
-  agregarProducto(){
-
-    const PRODUCTO: Producto = {
-      producto: this.productoForm.get('producto')?.value,
-      categoria: this.productoForm.get('categoria')?.value,
-      ubicacion: this.productoForm.get('ubicacion')?.value,
-      precio: this.productoForm.get('precio')?.value,
+  agregarSocio() {
+    if (this.socioForm.invalid) {
+      return;
     }
 
-    console.log(PRODUCTO)
+    const socio: Socio = {
+      nombre: this.socioForm.value.nombre,
+      direccion: this.socioForm.value.direccion,
+      telefono: this.socioForm.value.telefono,
+      directoresFavoritos: this.socioForm.value.directoresFavoritos.split(',').map((item: string) => item.trim()),
+      actoresFavoritos: this.socioForm.value.actoresFavoritos.split(',').map((item: string) => item.trim()),
+      generosPreferidos: this.socioForm.value.generosPreferidos.split(',').map((item: string) => item.trim())
+    };
 
     Swal.fire({
-      title: 'Creacion de Producto',
-      text: "¿Desea crear el producto?",
+      title: 'Creación de Socio',
+      text: '¿Desea crear el socio?',
       icon: 'info',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -47,17 +53,11 @@ export class CrearProductosComponent {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this._productoService.guardarProducto(PRODUCTO).subscribe(data =>{
-          console.log(data);  
-          this.router.navigate(['/listar-productos'])
-        }) 
+        this.socioService.guardarSocio(socio).subscribe(data => {
+          console.log(data);
+          this.router.navigate(['/listar-socios']);
+        });
       }
-    })
-
-    
+    });
   }
-
-    //console.log(this.productoForm)
-  
-
 }

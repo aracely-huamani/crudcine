@@ -1,36 +1,45 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Producto } from '../models/producto';
+import { Pelicula } from '../models/pelicula';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductoService {
-  url = 'http://localhost:4000/api/productos/';
+export class PeliculaService {
+  url = 'http://localhost:4000/api/peliculas/';
+  pdf = 'http://localhost:4000/api/peliculas-PDF/';
 
   constructor(private http: HttpClient) { 
 
   }
 
-  getProductos(): Observable<any> {
+  getPDF(): Observable<any> {
+    return this.http.get(this.pdf, { responseType: 'blob' })
+  }
+  
+  getPeliculas(): Observable<any> {
     return this.http.get(this.url);
   }
 
-  deleteProducto(id: string): Observable<any> {
+  deletePelicula(id: string): Observable<any> {
     return this.http.delete(this.url + id);
   }
 
-  guardarProducto(producto: Producto): Observable<any> {
-    return this.http.post(this.url, producto);
+  guardarPelicula(pelicula: Pelicula): Observable<any> {
+    return this.http.post(this.url, pelicula);
   }
 
-  viewProducto(id?: string): Observable<any> {
+  viewPelicula(id?: string): Observable<any> {
     return this.http.get(this.url + id)
   }
 
-  actualizarProducto(id: string, producto: Producto): Observable<any> {
-    return this.http.put(this.url + id, producto);
+  getPelicula(id: string): Observable<any> {
+    return this.http.get(this.url + id);
+  }
+
+  actualizarPelicula(id: string, pelicula: Pelicula): Observable<any> {
+    return this.http.put(this.url + id, pelicula);
   }
 
 }

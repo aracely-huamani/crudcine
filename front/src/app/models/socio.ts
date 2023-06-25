@@ -1,5 +1,5 @@
 export class Socio {
-    _id?: string;
+    id?: string;
     nombre: string;
     direccion: string;
     telefono: string;
