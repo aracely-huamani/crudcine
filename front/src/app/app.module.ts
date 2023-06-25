@@ -19,6 +19,9 @@ import { ListarPrestamosComponent } from './pages/prestamos/listar-prestamos/lis
 import { CrearPeliculaComponent } from './pages/pelicula/crear-peliculas/crear-peliculas.component';
 import { EditarPeliculaComponent } from './pages/pelicula/editar-peliculas/editar-peliculas.component';
 import { ListarPeliculasComponent } from './pages/pelicula/listar-peliculas/listar-peliculas.component';
+import { ListaEsperaComponent } from './pages/ListaEspera/crear-ListaEspera/crear-listaespera.component';
+import { EditarListaEsperaComponent } from './pages/ListaEspera/editar-ListaEspera/editar-listaespera.component';
+import { ListarListaEsperaComponent } from './pages/ListaEspera/listar-ListaEspera/listar-listaespera.component';
 
 
 @NgModule({
@@ -36,6 +39,9 @@ import { ListarPeliculasComponent } from './pages/pelicula/listar-peliculas/list
     CrearPeliculaComponent,
     EditarPeliculaComponent,
     ListarPeliculasComponent,
+    ListaEsperaComponent,
+    ListarListaEsperaComponent,
+    EditarListaEsperaComponent,
 
 
   ],

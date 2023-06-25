@@ -1,41 +1,60 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Tienda } from 'src/app/models/tienda';
-import { TiendaService } from 'src/app/services/socio.service';
-import Swal from 'sweetalert2'
+import { ActivatedRoute, Router } from '@angular/router';
+import { ListaEspera } from 'src/app/models/ListaEspera';
+import { ListaEsperaService } from 'src/app/services/ListaEspera.service';
+import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-crear-tiendas',
-  templateUrl: './crear-tiendas.component.html',
-  styleUrls: ['./crear-tiendas.component.css']
+  selector: 'app-lista-espera',
+  templateUrl: './crear-listaespera.component.html',
+  styleUrls: ['./crear-listaespera.component.css']
 })
-export class CrearTiendasComponent {
-  tiendaForm: FormGroup;
+export class ListaEsperaComponent implements OnInit {
+  listaEsperaForm: FormGroup;
+  id: string | null;
 
-  constructor(private fb: FormBuilder,
-              private router: Router,
-              private _tiendaService: TiendaService){
-    this.tiendaForm = this.fb.group({
-        departamento:  ['', Validators.required],
-        distrito: ['', Validators.required],
-        cantidad: ['', Validators.required]
-    })
+  constructor(
+    private fb: FormBuilder,
+    private aRouter: ActivatedRoute,
+    private router: Router,
+    private listaEsperaService: ListaEsperaService
+  ) {
+    this.listaEsperaForm = this.fb.group({
+      pelicula: ['', Validators.required],
+      socios: ['', Validators.required]
+    });
+    this.id = aRouter.snapshot.paramMap.get('id');
   }
 
-  agregarTienda(){
+  ngOnInit(): void {
+    this.validarId();
+  }
 
-    const TIENDA: Tienda = {
-      departamento: this.tiendaForm.get('departamento')?.value,
-      distrito: this.tiendaForm.get('distrito')?.value,
-      cantidad: this.tiendaForm.get('cantidad')?.value,
+  validarId() {
+    if (this.id !== null) {
+      this.listaEsperaService.getListaEspera(this.id).subscribe(data => {
+        this.listaEsperaForm.setValue({
+          pelicula: data.pelicula,
+          socios: data.socios.join(', ')
+        });
+      });
+    }
+  }
+  
+  guardarListaEspera() {
+    if (this.listaEsperaForm.invalid) {
+      return;
     }
 
-    console.log(TIENDA)
+    const listaEspera: ListaEspera = {
+      pelicula: this.listaEsperaForm.value.pelicula,
+      socios: this.listaEsperaForm.value.socios.split(',').map((item: string) => item.trim())
+    };
 
     Swal.fire({
-      title: 'Creacion de Tienda',
-      text: "¿Desea crear la tienda?",
+      title: 'Guardar Lista de Espera',
+      text: '¿Desea guardar la lista de espera?',
       icon: 'info',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -44,13 +63,18 @@ export class CrearTiendasComponent {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this._tiendaService.guardarTienda(TIENDA).subscribe(data =>{
-          console.log(data);  
-          this.router.navigate(['/tiendas'])
-        }) 
+        if (this.id !== null) {
+          this.listaEsperaService.actualizarListaEspera(this.id, listaEspera).subscribe(data => {
+            console.log(listaEspera);
+            this.router.navigate(['/listar-listaespera']);
+          });
+        } else {
+          this.listaEsperaService.guardarListaEspera(listaEspera).subscribe(data => {
+            console.log(listaEspera);
+            this.router.navigate(['/listar-listaespera']);
+          });
+        }
       }
-    })    
+    });
   }
-
-    //console.log(this.productoForm)
 }

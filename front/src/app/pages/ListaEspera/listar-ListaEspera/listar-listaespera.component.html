@@ -1,0 +1,49 @@
+<app-navbar></app-navbar>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row m-t-sm">
+      <div class="col-md-12">
+        <div class="panel">
+          <div class="panel-body">
+            <div class="col-md-12 col-sm-12" id="form" style="display:block;">
+              <div class="panel panel-filled">
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <h5 class="m-t-xs">Lista de Espera</h5>
+                    </div>
+                  </div>
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Id</th>
+                        <th>Película</th>
+                        <th>Socios</th>
+                        <th>Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let listaEspera of listasEspera">
+                        <td>{{ listaEspera._id }}</td>
+                        <td>{{ listaEspera.pelicula }}</td>
+                        <td>
+                          <ul>
+                            <li *ngFor="let socioId of listaEspera.socios">{{ getSocioNombre(socioId) }}</li>
+                          </ul>
+                        </td>
+                        <td>
+                          <button class="btn btn-w-md btn-danger" (click)="eliminarListaEspera(listaEspera._id)">Eliminar</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

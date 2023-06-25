@@ -11,8 +11,13 @@ export class ListaEsperaService {
 
   constructor(private http: HttpClient) { }
 
-  getListaEspera(): Observable<any> {
-    return this.http.get(this.url);
+  getListaEspera(id: string): Observable<any> {
+    return this.http.get(this.url + id);
+  }
+  
+
+  getListaEsperaPorId(id: string): Observable<any> {
+    return this.http.get(this.url + id);
   }
 
   deleteListaEspera(id: string): Observable<any> {
@@ -23,8 +28,8 @@ export class ListaEsperaService {
     return this.http.post(this.url, listaEspera);
   }
 
-  getListaEsperaPelicula(idPelicula: string): Observable<any> {
-    return this.http.get(this.url + 'pelicula/' + idPelicula);
+  actualizarListaEspera(id: string, listaEspera: ListaEspera): Observable<any> {
+    return this.http.put(this.url + id, listaEspera);
   }
 
   agregarSocioALista(idLista: string, idSocio: string): Observable<any> {
