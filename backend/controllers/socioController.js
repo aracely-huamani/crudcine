@@ -1,11 +1,11 @@
-const Producto = require("../models/Producto");
+const Socio = require("../models/Socio");
 
-exports.crearProducto = async (req, res) => {
+exports.crearSocio = async (req, res) => {
     try {
-        const producto = new Producto(req.body);
+        const socio = new Socio(req.body);
 
-        await producto.save();
-        res.send(producto);
+        await socio.save();
+        res.send(socio);
 
 
     } catch (error) {
@@ -14,12 +14,12 @@ exports.crearProducto = async (req, res) => {
     }
 }
 
-exports.obtenerProductos = async (req, res) => {
+exports.obtenerSocio = async (req, res) => {
 
     try {
 
-        const productos = await Producto.find();
-        res.json(productos);
+        const socios = await Socio.find();
+        res.json(socios);
         
     } catch (error) {
         console.log(error);
@@ -28,27 +28,29 @@ exports.obtenerProductos = async (req, res) => {
 
 }
 
-exports.actualizarProducto = async (req, res) => {
+exports.actualizarSocio = async (req, res) => {
 
     try {
 
-        const {_id, producto, categoria, ubicacion, precio } = new Producto(req.body);
-        let products = await Producto.findById(req.params.id);
+        const {_id, nombre, direccion, telefono, directoresFavoritos,actoresFavoritos,generosPreferidos } = new Socio(req.body);
+        let socio = await Socio.findById(req.params.id);
 
-        if(!products){
-            res.status(404).json({ msg: 'No existe el producto'});
+        if(!socio){
+            res.status(404).json({ msg: 'No existe el socio'});
         }
 
-        producto._id = _id;
-        products.producto = producto;
-        products.categoria = categoria;
-        products.ubicacion = ubicacion;
-        products.precio = precio;
+        socio._id = _id;
+        socio.nombre = nombre;
+        socio.direccion = direccion;
+        socio.telefono = telefono;
+        socio.directoresFavoritos = directoresFavoritos;
+        socio.actoresFavoritos=actoresFavoritos
+        socio.generosPreferidos=generosPreferidos
 
-        console.log(products)
+        console.log(socio)
 
-        products = await Producto.findOneAndUpdate({ _id: req.params.id }, products, { new: true } );
-        res.json(products);
+        socio = await Socio.findOneAndUpdate({ _id: req.params.id }, socio, { new: true } );
+        res.json(socio);
 
         
     } catch (error) {
@@ -58,17 +60,17 @@ exports.actualizarProducto = async (req, res) => {
 
 }
 
-exports.verProducto = async (req, res) => {
+exports.verSocio = async (req, res) => {
 
     try {
 
-        let products = await Producto.findById(req.params.id);
+        let socio = await Socio.findById(req.params.id);
 
-        if(!products){
-            res.status(404).json({ msg: 'No existe el producto'});
+        if(!socio){
+            res.status(404).json({ msg: 'No existe el socio'});
         }
 
-        res.json(products);
+        res.json(socio);
         
     } catch (error) {
         console.log(error);
@@ -77,19 +79,19 @@ exports.verProducto = async (req, res) => {
 
 }
 
-exports.eliminarProducto = async (req, res) => {
+exports.eliminarSocio = async (req, res) => {
 
     try {
 
-        let products = await Producto.findById(req.params.id);
+        let socio = await Socio.findById(req.params.id);
 
-        if(!products){
-            res.status(404).json({ msg: 'No existe el producto'});
+        if(!socio){
+            res.status(404).json({ msg: 'No existe el socio'});
         }
 
-        products = await Producto.findOneAndRemove(req.params.id);
+        socio = await Socio.findOneAndRemove(req.params.id);
 
-        res.json({ msg: 'El producto: ' + products.producto + ' se ha eliminado' });
+        res.json({ msg: 'El socio: ' + socio.socio + ' se ha eliminado' });
         
     } catch (error) {
         console.log(error);
@@ -97,4 +99,3 @@ exports.eliminarProducto = async (req, res) => {
     }
 
 }
-
