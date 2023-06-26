@@ -1,7 +1,7 @@
 
 const express = require('express');
 const router = express.Router();
-const productoController = require('../controllers/prestamoController');
+const prestamoController = require('../controllers/prestamoController');
 
 router.post('/', prestamoController.crearPrestamo);
 router.get('/', prestamoController.obtenerPrestamo);

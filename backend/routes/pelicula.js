@@ -1,7 +1,8 @@
 
 const express = require('express');
 const router = express.Router();
-const productoController = require('../controllers/peliculaController');
+const peliculaController = require('../controllers/peliculaController');
+
 
 
 router.post('/', peliculaController.crearPelicula);

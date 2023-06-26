@@ -9,7 +9,7 @@
   "author": "jcastanedaa@tecsup.edu.pe",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "nodemon": "^1.14.9"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

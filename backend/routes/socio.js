@@ -1,7 +1,7 @@
 
 const express = require('express');
 const router = express.Router();
-const productoController = require('../controllers/socioController');
+const socioController = require('../controllers/socioController');
 
 
 router.post('/',socioController.crearSocio);

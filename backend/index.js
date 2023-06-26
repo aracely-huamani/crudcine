@@ -12,7 +12,7 @@ app.use(cors())
 
 app.use(express.json());
 
-aapp.use('/api/peliculas', require('./routes/pelicula'));
+app.use('/api/peliculas', require('./routes/pelicula'));
 app.use('/api/listaesperas', require('./routes/listaespera'));
 app.use('/api/prestamos', require('./routes/prestamo'));
 app.use('/api/socios', require('./routes/socio'));
