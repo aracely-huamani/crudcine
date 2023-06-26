@@ -1,11 +1,11 @@
-const Producto = require("../models/Producto");
+const Prestamo = require("../models/Prestamo");
 
-exports.crearProducto = async (req, res) => {
+exports.crearPrestamo = async (req, res) => {
     try {
-        const producto = new Producto(req.body);
+        const prestamo = new Prestamo(req.body);
 
-        await producto.save();
-        res.send(producto);
+        await prestamo.save();
+        res.send(prestamo);
 
 
     } catch (error) {
@@ -14,12 +14,12 @@ exports.crearProducto = async (req, res) => {
     }
 }
 
-exports.obtenerProductos = async (req, res) => {
+exports.obtenerPrestamo = async (req, res) => {
 
     try {
 
-        const productos = await Producto.find();
-        res.json(productos);
+        const prestamos = await Prestamo.find();
+        res.json(prestamos);
         
     } catch (error) {
         console.log(error);
@@ -28,27 +28,27 @@ exports.obtenerProductos = async (req, res) => {
 
 }
 
-exports.actualizarProducto = async (req, res) => {
+exports.actualizarPrestamo = async (req, res) => {
 
     try {
 
-        const {_id, producto, categoria, ubicacion, precio } = new Producto(req.body);
-        let products = await Producto.findById(req.params.id);
+        const {_id, idSocio, estado, cintaNumero, fecha } = new Prestamo(req.body);
+        let prestamo = await Prestamo.findById(req.params.id);
 
-        if(!products){
-            res.status(404).json({ msg: 'No existe el producto'});
+        if(!prestamo){
+            res.status(404).json({ msg: 'No existe el prestamo'});
         }
 
-        producto._id = _id;
-        products.producto = producto;
-        products.categoria = categoria;
-        products.ubicacion = ubicacion;
-        products.precio = precio;
+        prestamo._id = _id;
+        prestamo.idsocio = idSocio;
+        prestamo.estado = estado;
+        prestamo.cintaNumero = cintaNumero;
+        prestamo.fecha = fecha;
 
-        console.log(products)
+        console.log(prestamo)
 
-        products = await Producto.findOneAndUpdate({ _id: req.params.id }, products, { new: true } );
-        res.json(products);
+        prestamo = await Prestamo.findOneAndUpdate({ _id: req.params.id }, prestamo, { new: true } );
+        res.json(prestamo);
 
         
     } catch (error) {
@@ -58,17 +58,17 @@ exports.actualizarProducto = async (req, res) => {
 
 }
 
-exports.verProducto = async (req, res) => {
+exports.verPrestamo = async (req, res) => {
 
     try {
 
-        let products = await Producto.findById(req.params.id);
+        let prestamo = await Prestamo.findById(req.params.id);
 
-        if(!products){
-            res.status(404).json({ msg: 'No existe el producto'});
+        if(!prestamo){
+            res.status(404).json({ msg: 'No existe el prestamo'});
         }
 
-        res.json(products);
+        res.json(prestamo);
         
     } catch (error) {
         console.log(error);
@@ -77,19 +77,19 @@ exports.verProducto = async (req, res) => {
 
 }
 
-exports.eliminarProducto = async (req, res) => {
+exports.eliminarPrestamo = async (req, res) => {
 
     try {
 
-        let products = await Producto.findById(req.params.id);
+        let prestamo = await Prestamo.findById(req.params.id);
 
-        if(!products){
-            res.status(404).json({ msg: 'No existe el producto'});
+        if(!prestamo){
+            res.status(404).json({ msg: 'No existe el prestamo'});
         }
 
-        products = await Producto.findOneAndRemove(req.params.id);
+        prestamo = await Prestamo.findOneAndRemove(req.params.id);
 
-        res.json({ msg: 'El producto: ' + products.producto + ' se ha eliminado' });
+        res.json({ msg: 'El prestamo: ' + prestamo.prestamo + ' se ha eliminado' });
         
     } catch (error) {
         console.log(error);
