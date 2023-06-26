@@ -1,4 +1,4 @@
-const Producto = require("../models/Pelicula");
+const Pelicula = require("../models/Pelicula");
 
 exports.crearPelicula = async (req, res) => {
     try {
@@ -18,8 +18,8 @@ exports.obtenerPelicula = async (req, res) => {
 
     try {
 
-        const pelicula = await Pelicula.find();
-        res.json(pelicula);
+        const peliculas = await Pelicula.find();
+        res.json(peliculas);
         
     } catch (error) {
         console.log(error);
@@ -39,16 +39,16 @@ exports.actualizarPelicula = async (req, res) => {
             res.status(404).json({ msg: 'No existe la pelicula'});
         }
 
-        pelicula._id = _id;
+        peliculas._id = _id;
         peliculas.pelicula = titulo;
         peliculas.pelicula = genero;
         peliculas.pelicula= director;
         peliculas.pelicula = actores;
 
-        console.log(products)
+        console.log(peliculas)
 
-        products = await Producto.findOneAndUpdate({ _id: req.params.id }, products, { new: true } );
-        res.json(products);
+        peliculas = await Pelicula.findOneAndUpdate({ _id: req.params.id }, peliculas, { new: true } );
+        res.json(peliculas);
 
         
     } catch (error) {
@@ -58,17 +58,17 @@ exports.actualizarPelicula = async (req, res) => {
 
 }
 
-exports.verProducto = async (req, res) => {
+exports.verPelicula = async (req, res) => {
 
     try {
 
-        let products = await Producto.findById(req.params.id);
+        let peliculas = await Pelicula.findById(req.params.id);
 
-        if(!products){
-            res.status(404).json({ msg: 'No existe el producto'});
+        if(!peliculas){
+            res.status(404).json({ msg: 'No existe la pelicula'});
         }
 
-        res.json(products);
+        res.json(peliculas);
         
     } catch (error) {
         console.log(error);
@@ -77,19 +77,19 @@ exports.verProducto = async (req, res) => {
 
 }
 
-exports.eliminarProducto = async (req, res) => {
+exports.eliminarPelicula = async (req, res) => {
 
     try {
 
-        let products = await Producto.findById(req.params.id);
+        let peliculas = await Pelicula.findById(req.params.id);
 
-        if(!products){
-            res.status(404).json({ msg: 'No existe el producto'});
+        if(!peliculas){
+            res.status(404).json({ msg: 'No existe la pelicula'});
         }
 
-        products = await Producto.findOneAndRemove(req.params.id);
+        peliculas = await Pelicula.findOneAndRemove(req.params.id);
 
-        res.json({ msg: 'El producto: ' + products.producto + ' se ha eliminado' });
+        res.json({ msg: 'La pelicula: ' + peliculas.pelicula + ' se ha eliminado' });
         
     } catch (error) {
         console.log(error);
