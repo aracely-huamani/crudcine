@@ -1,46 +1,50 @@
-<!DOCTYPE html>
+<!--
+
+=========================================================
+* Material Dashboard Angular - v2.8.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/material-dashboard-angular2
+* Copyright 2021 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://github.com/creativetimofficial/material-dashboard-angular2/blob/master/LICENSE.md)
+
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+-->
+<!doctype html>
 <html>
-
-<!-- Mirrored from webapplayers.com/luna_admin-v1.1/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 10 Aug 2016 14:23:15 GMT -->
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href='/'>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png" />
+    <link rel="icon" type="image/png" href="./assets/img/favicon.png" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900' rel='stylesheet' type='text/css'>
+    <title>Material Dashboard Angular by Creative Tim</title>
 
-    <!-- Page title -->
-    <title>LUNA | Responsive Admin Theme</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
 
-    <!-- Vendor styles -->
-    <link rel="stylesheet" href="assets/vendor/fontawesome/css/font-awesome.css"/>
-    <link rel="stylesheet" href="assets/vendor/animate.css/animate.css"/>
-    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.css"/>
+    <!--     Fonts and icons     -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR-KEY-HERE"></script>
+    <script>window.global = window;</script>
 
-    <!-- App styles -->
-    <link rel="stylesheet" href="assets/styles/pe-icons/pe-icon-7-stroke.css"/>
-    <link rel="stylesheet" href="assets/styles/pe-icons/helper.css"/>
-    <link rel="stylesheet" href="assets/styles/stroke-icons/style.css"/>
-    <link rel="stylesheet" href="assets/styles/style.css">
 </head>
-<body >
-  <!-- Wrapper-->
-  <div class="wrapper">
-    <app-root></app-root>
-  </div>
-  <!-- Vendor scripts -->
-  <script src="assets/vendor/pacejs/pace.min.js"></script>
-  <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-  <!-- App scripts -->
-  <script src="assets/scripts/luna.js"></script>
-
-  <!-- Mi API KEY de Google Maps -->
-  <script async
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBihRqZC1ca4ienBNShbR6ZtNPoLxkrntU">
-  </script>
-
-
+<body>
+  <app-root>
+    <div class="loader">
+      <svg class="circular" viewBox="25 25 50 50">
+          <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+      </svg>
+    </div>
+  </app-root>
 </body>
+
+
 </html>

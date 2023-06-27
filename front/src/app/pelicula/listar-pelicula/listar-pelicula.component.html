@@ -1,0 +1,54 @@
+<app-navbar></app-navbar>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row m-t-sm">
+      <div class="col-md-12">
+        <div class="panel">
+          <div class="panel-body">
+            <div class="col-md-12 col-sm-12" id="form" style="display:block;">
+              <div class="panel panel-filled">
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <h5 class="m-t-xs">Lista de Películas</h5>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <button class="btn btn-w-md btn-primary m-b-sm" routerLink="/crear-pelicula">Crear Película</button>
+                    </div>
+                  </div>
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Título</th>
+                        <th>Género</th>
+                        <th>Director</th>
+                        <th>Actores</th>
+                        <th>Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let pelicula of listPeliculas">
+                        <td>{{ pelicula._id }}</td>
+                        <td>{{ pelicula.titulo }}</td>
+                        <td>{{ pelicula.genero }}</td>
+                        <td>{{ pelicula.director }}</td>
+                        <td>{{ pelicula.actores}}</td>
+                        <td>
+                          <button class="btn btn-w-md btn-danger" (click)="eliminarPelicula(pelicula._id)">Eliminar</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

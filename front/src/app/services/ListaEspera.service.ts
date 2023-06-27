@@ -11,8 +11,8 @@ export class ListaEsperaService {
 
   constructor(private http: HttpClient) { }
 
-  getListaEspera(id: string): Observable<any> {
-    return this.http.get(this.url + id);
+  getListaEspera(): Observable<any> {
+    return this.http.get(this.url);
   }
   
 

@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+
+<section class="content">
+  <div class="container">
+    <h2>Editar Lista de Espera</h2>
+    <form [formGroup]="listaEsperaForm" (ngSubmit)="editarListaEspera()" class="mt-4">
+      <div class="form-group">
+        <label for="pelicula">Película:</label>
+        <input type="text" formControlName="pelicula" class="form-control" placeholder="Ingrese el nombre de la película">
+        <div *ngIf="listaEsperaForm.get('pelicula')?.invalid && listaEsperaForm.get('pelicula')?.touched" class="text-danger">
+          El nombre de la película es requerido
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="socios">Socios:</label>
+        <input type="text" formControlName="socios" class="form-control" placeholder="Ingrese los nombres de los socios separados por comas">
+        <div *ngIf="listaEsperaForm.get('socios')?.invalid && listaEsperaForm.get('socios')?.touched" class="text-danger">
+          Los nombres de los socios son requeridos
+        </div>
+      </div>
+      <button type="submit" [disabled]="listaEsperaForm.invalid" class="btn btn-primary">Actualizar</button>
+    </form>
+  </div>
+  
+</section>
