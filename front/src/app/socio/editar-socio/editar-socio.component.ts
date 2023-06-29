@@ -41,9 +41,9 @@ export class EditarSocioComponent implements OnInit {
           nombre: data.nombre,
           direccion: data.direccion,
           telefono: data.telefono,
-          directoresFavoritos: data.directoresFavoritos.join(', '),
-          actoresFavoritos: data.actoresFavoritos.join(', '),
-          generosPreferidos: data.generosPreferidos.join(', ')
+          directoresFavoritos: data.directoresFavoritos,
+          actoresFavoritos: data.actoresFavoritos,
+          generosPreferidos: data.generosPreferidos
         });
       });
     }
@@ -54,9 +54,9 @@ export class EditarSocioComponent implements OnInit {
       nombre: this.socioForm.get('nombre')?.value,
       direccion: this.socioForm.get('direccion')?.value,
       telefono: this.socioForm.get('telefono')?.value,
-      directoresFavoritos: this.socioForm.get('directoresFavoritos')?.value.split(',').map((item: string) => item.trim()),
-      actoresFavoritos: this.socioForm.get('actoresFavoritos')?.value.split(',').map((item: string) => item.trim()),
-      generosPreferidos: this.socioForm.get('generosPreferidos')?.value.split(',').map((item: string) => item.trim())
+      directoresFavoritos: this.socioForm.get('directoresFavoritos')?.value,
+      actoresFavoritos: this.socioForm.get('actoresFavoritos')?.value,
+      generosPreferidos: this.socioForm.get('generosPreferidos')?.value
     };
 
     Swal.fire({

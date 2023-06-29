@@ -41,7 +41,7 @@ export class EditarPeliculaComponent implements OnInit {
           titulo: data.titulo,
           genero: data.genero,
           director: data.director,
-          actores: data.actores.join(', ')
+          actores: data.actores
         });
       });
     }

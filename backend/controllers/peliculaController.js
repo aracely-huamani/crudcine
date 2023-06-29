@@ -58,20 +58,20 @@ exports.verPelicula = async (req, res) => {
     res.status(500).send('Hubo un error');
   }
 };
-
-exports.eliminarPelicula = async (req, res) => {
-  try {
-    let pelicula = await Pelicula.findById(req.params.id);
-
-    if (!pelicula) {
-      return res.status(404).json({ msg: 'No existe la pelicula' });
+  exports.eliminarPelicula = async (req, res) => {
+    try {
+      const pelicula = await Pelicula.findById(req.params.id);
+  
+      if (!pelicula) {
+        return res.status(404).json({ msg: 'No existe la película' });
+      }
+  
+      await pelicula.remove();
+  
+      res.json({ msg: 'La película "' + pelicula.titulo + '" se ha eliminado' });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send('Hubo un error');
     }
+  };
 
-    await pelicula.remove();
-
-    res.json({ msg: 'La pelicula: ' + pelicula.titulo + ' se ha eliminado' });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send('Hubo un error');
-  }
-};

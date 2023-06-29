@@ -1,29 +1,26 @@
 const mongoose = require('mongoose');
 
 const PeliculaSchema = mongoose.Schema({
-
-
-    _id: {
-        type: String,
-        require: true
-    },
-    titulo: {
-        type: String,
-        require: true
-    },
-    genero: {
-        type: String,
-        require: true
-    },
-    director: {
-        type: String,
-        require: true
-    },
-    actores: {
-        type: String,
-        require: true
-    },
-   
+  _id: {
+    type: String,
+    required: true
+  },
+  titulo: {
+    type: String,
+    required: true
+  },
+  genero: {
+    type: String,
+    required: true
+  },
+  director: {
+    type: String,
+    required: true
+  },
+  actores: {
+    type: String,
+    required: true
+  }
 });
 
-module.exports = mongoose.model('Pelicula', PeliculaSchema)
+module.exports = mongoose.model('Pelicula', PeliculaSchema);
