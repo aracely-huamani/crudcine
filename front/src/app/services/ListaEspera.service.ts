@@ -7,7 +7,7 @@ import { ListaEspera } from '../models/ListaEspera';
   providedIn: 'root'
 })
 export class ListaEsperaService {
-  url = 'http://localhost:4000/api/ListaEspera/';
+  url = 'http://localhost:4000/api/listaesperas/';
 
   constructor(private http: HttpClient) { }
 

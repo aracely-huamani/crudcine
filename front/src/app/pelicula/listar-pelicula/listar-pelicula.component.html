@@ -1,48 +1,62 @@
 <app-navbar></app-navbar>
-
 <section class="content">
   <div class="container-fluid">
     <div class="row m-t-sm">
       <div class="col-md-12">
         <div class="panel">
           <div class="panel-body">
-            <div class="col-md-12 col-sm-12" id="form" style="display:block;">
+            <div class="col-md-12 col-sm-12" id="list_alumnos">
               <div class="panel panel-filled">
                 <div class="panel-body">
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <h5 class="m-t-xs">Lista de Películas</h5>
+                  <div class="view-header">
+                    <div class="header-icon">
+                      <i class="pe page-header-icon pe-7s-note2"></i>
                     </div>
+                    <div class="header-title">
+                      <small>Peliculas Registradas</small>
+                    </div>
+                    <hr>
                   </div>
                   <div class="row">
-                    <div class="col-sm-12">
-                      <button class="btn btn-w-md btn-primary m-b-sm" routerLink="/crear-pelicula">Crear Película</button>
+                    <div class="col-sm-12 text-right">
+                      <a id="btnNuevo" class="btn btn-w-md btn-info" routerLink="/crear-pelicula">Nuevo Producto</a>
                     </div>
                   </div>
-                  <table class="table table-hover">
-                    <thead>
-                      <tr>
-                        <th>ID</th>
-                        <th>Título</th>
-                        <th>Género</th>
-                        <th>Director</th>
-                        <th>Actores</th>
-                        <th>Acciones</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let pelicula of listPeliculas">
-                        <td>{{ pelicula._id }}</td>
-                        <td>{{ pelicula.titulo }}</td>
-                        <td>{{ pelicula.genero }}</td>
-                        <td>{{ pelicula.director }}</td>
-                        <td>{{ pelicula.actores}}</td>
-                        <td>
-                          <button class="btn btn-w-md btn-danger" (click)="eliminarPelicula(pelicula._id)">Eliminar</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <br>
+                  <br>
+                  <div>
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Título</th>
+                          <th>Género</th>
+                          <th>Director</th>
+                          <th>Actores</th>
+                          <th>Acciones</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let pelicula of listPeliculas">
+                          <td>{{ pelicula.titulo }}</td>
+                          <td>{{ pelicula.genero }}</td>
+                          <td>{{ pelicula.director }}</td>
+                          <td>{{ pelicula.actores }}</td>
+                          <td>
+                            <button class="btn btn-w-md btn-sm btn-danger" (click)="eliminarPelicula(pelicula._id)">
+                              <i class="pe pe-7s-trash text-accent"></i> Eliminar
+                            </button>
+                            <button class="btn btn-w-md btn-sm btn-danger" [routerLink]="['/editar-pelicula', pelicula._id]">
+                              <i class="pe pe-7s-pen text-accent"></i> Editar
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <br>
+                  <div class="text-right font-bold c-white y-value">
+                    <div id="val_a">Total Películas: {{ elementos }}</div>
+                  </div>
                 </div>
               </div>
             </div>

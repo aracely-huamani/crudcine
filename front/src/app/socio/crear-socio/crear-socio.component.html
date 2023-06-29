@@ -1,15 +1,18 @@
 <app-navbar></app-navbar>
+
 <section class="content">
   <div class="container-fluid">
     <div class="row m-t-sm">
-      <div class="col-md-15">
+      <div class="col-md-12">
         <div class="panel">
           <div class="panel-body">
             <div class="col-md-12 col-sm-12" id="form" style="display:block;">
               <div class="panel panel-filled">
                 <div class="panel-body">
                   <div class="row">
-                    <div class="col-sm-12"><h5 class="m-t-xs">Ingreso de Socio</h5></div>
+                    <div class="col-sm-12">
+                      <h5 class="m-t-xs">Creación de Socio</h5>
+                    </div>
                   </div>
                   <form [formGroup]="socioForm" (ngSubmit)="agregarSocio()">
                     <div class="form-group">
@@ -57,16 +60,17 @@
                     <div class="col-sm-12 text-right">
                       <div class="panel-body buttons-margin">
                         <button type="submit" [disabled]="socioForm.invalid" class="btn btn-w-md btn-success">Guardar</button>&nbsp;&nbsp;
-                        <button class="btn btn-w-md btn-warning" routerLink="/listar-socios">Cancelar</button>
+                        <button class="btn btn-w-md btn-warning" routerLink="/listar-socio">Cancelar</button>
                       </div>
                     </div>
                   </form>
+                  
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>    
+      </div>
     </div>
   </div>
 </section>

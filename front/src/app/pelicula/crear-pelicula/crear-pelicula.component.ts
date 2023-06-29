@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
   selector: 'app-crear-pelicula',
   templateUrl: './crear-pelicula.component.html'
 })
-export class CrearPeliculaComponent implements OnInit {
+export class CrearPeliculaComponent{
   peliculaForm: FormGroup;
 
   constructor(
@@ -18,27 +18,22 @@ export class CrearPeliculaComponent implements OnInit {
     private peliculaService: PeliculaService
   ) {
     this.peliculaForm = this.fb.group({
-      titulo: ['', Validators.required],
-      genero: ['', Validators.required],
-      director: ['', Validators.required],
-      actores: ['', Validators.required]
-    });
+        titulo: ['', Validators.required],
+        genero: ['', Validators.required],
+        director: ['', Validators.required],
+        actores: ['', Validators.required]
+    })
   }
 
-  ngOnInit(): void {
-  }
 
   agregarPelicula() {
-    if (this.peliculaForm.invalid) {
-      return;
-    }
-
     const pelicula: Pelicula = {
-      titulo: this.peliculaForm.value.titulo,
-      genero: this.peliculaForm.value.genero,
-      director: this.peliculaForm.value.director,
-      actores: this.peliculaForm.value.actores
+      titulo: this.peliculaForm.get('titulo')?.value,
+      genero: this.peliculaForm.get('genero')?.value,
+      director: this.peliculaForm.get('director')?.value,
+      actores: this.peliculaForm.get('actores')?.value,
     };
+    console.log(pelicula)
 
     Swal.fire({
       title: 'Creación de Película',
@@ -53,9 +48,9 @@ export class CrearPeliculaComponent implements OnInit {
       if (result.isConfirmed) {
         this.peliculaService.guardarPelicula(pelicula).subscribe(data => {
           console.log(data);
-          this.router.navigate(['/listar-peliculas']);
-        });
+          this.router.navigate(['/listar-pelicula']);
+        })
       }
-    });
+    })
   }
 }

@@ -34,8 +34,8 @@ export class PeliculaService {
     return this.http.get(this.url + id)
   }
 
-  getPelicula(id: string): Observable<any> {
-    return this.http.get(this.url + id);
+  getPelicula(): Observable<any> {
+    return this.http.get(this.url);
   }
 
   actualizarPelicula(id: string, pelicula: Pelicula): Observable<any> {

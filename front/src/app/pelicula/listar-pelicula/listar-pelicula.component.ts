@@ -2,28 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { Pelicula } from 'app/models/pelicula';
 import { PeliculaService } from 'app/services/pelicula.service';
 import Swal from 'sweetalert2';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
-  selector: 'app-listar-peliculas',
+  selector: 'app-listar-pelicula',
   templateUrl: './listar-pelicula.component.html'
 })
 export class ListarPeliculaComponent implements OnInit {
-  peliculaForm: FormGroup;
   listPeliculas: Pelicula[] = [];
   elementos: number = 0;
 
-  constructor(
-    private _peliculaService: PeliculaService,
-    private fb: FormBuilder
-  ) {
-    this.peliculaForm = this.fb.group({
-      titulo: ['', Validators.required],
-      genero: ['', Validators.required],
-      director: ['', Validators.required],
-      actores: ['', Validators.required]
-    });
-  }
+  constructor(private _peliculaService: PeliculaService) {}
 
   ngOnInit(): void {
     this.obtenerPeliculas();
@@ -56,23 +45,5 @@ export class ListarPeliculaComponent implements OnInit {
         });
       }
     });
-  }
-
-  agregarPelicula() {
-    if (this.peliculaForm.valid) {
-      const pelicula: Pelicula = {
-        titulo: this.peliculaForm.get('titulo')?.value,
-        genero: this.peliculaForm.get('genero')?.value,
-        director: this.peliculaForm.get('director')?.value,
-        actores: this.peliculaForm.get('actores')?.value
-      };
-
-      this._peliculaService.guardarPelicula(pelicula).subscribe(data => {
-        console.log(data);
-        this.peliculaForm.reset();
-        this.obtenerPeliculas();
-        this.elementos = this.listPeliculas.length;
-      });
-    }
   }
 }

@@ -3,14 +3,16 @@
 <section class="content">
   <div class="container-fluid">
     <div class="row m-t-sm">
-      <div class="col-md-15">
+      <div class="col-md-12">
         <div class="panel">
           <div class="panel-body">
             <div class="col-md-12 col-sm-12" id="form" style="display:block;">
               <div class="panel panel-filled">
                 <div class="panel-body">
                   <div class="row">
-                    <div class="col-sm-12"><h5 class="m-t-xs">Ingreso de Socio</h5></div>
+                    <div class="col-sm-12">
+                      <h5 class="m-t-xs">Edición de Socio</h5>
+                    </div>
                   </div>
                   <form [formGroup]="socioForm" (ngSubmit)="editarSocio()">
                     <div class="form-group">
@@ -55,11 +57,9 @@
                         <span>Los géneros preferidos <strong>son obligatorios</strong></span>
                       </div>
                     </div>
-                    <div class="col-sm-12 text-right">
-                      <div class="panel-body buttons-margin">
-                        <button type="submit" [disabled]="socioForm.invalid" class="btn btn-w-md btn-success">Guardar</button>&nbsp;&nbsp;
-                        <button class="btn btn-w-md btn-warning" routerLink="/listar-socios">Cancelar</button>
-                      </div>
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-primary">Guardar</button>
+                      <a class="btn btn-secondary" [routerLink]="['/listar-socio']">Cancelar</a>
                     </div>
                   </form>
                 </div>

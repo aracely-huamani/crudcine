@@ -54,7 +54,7 @@ export class CrearSocioComponent {
       if (result.isConfirmed) {
         this.socioService.guardarSocio(socio).subscribe(data => {
           console.log(data);
-          this.router.navigate(['/listar-socios']);
+          this.router.navigate(['/listar-socio']);
         });
       }
     });

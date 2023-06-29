@@ -12,6 +12,9 @@ export const ROUTES: RouteInfo[] = [
     { path: '/table-list', title: 'Table List',  icon:'content_paste', class: '' },
     { path: '/typography', title: 'Typography',  icon:'library_books', class: '' },
     { path: '/listar-pelicula', title: 'Pelicula', icon: 'dashboard', class: ''},
+    { path: '/listar-listaespera', title: 'Lista Espera', icon: 'dashboard', class: ''},
+    { path: '/listar-socio', title: 'Socio', icon: 'dashboard', class: ''},
+    { path: '/listar-prestamo', title: 'Prestamo', icon: 'dashboard', class: ''},
     { path: '/icons', title: 'Icons',  icon:'bubble_chart', class: '' },
     { path: '/', title: ' to PRO',  icon:'unarchive', class: 'active-pro' },
 ];

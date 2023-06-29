@@ -19,6 +19,8 @@ import { EditarSocioComponent } from './socio/editar-socio/editar-socio.componen
 import { ListarPrestamosComponent } from './prestamos/listar-prestamos/listar-prestamos.component';
 import { CrearPrestamosComponent } from './prestamos/crear-prestamos/crear-prestamos.component';
 import { EditarPrestamosComponent } from './prestamos/editar-prestamos/editar-prestamos.component';
+import { CreateUserComponent } from './users/create-user/create-user.component';
+import { LoginComponent } from './users/login/login.component';
 
 @NgModule({
   imports: [
@@ -45,6 +47,8 @@ import { EditarPrestamosComponent } from './prestamos/editar-prestamos/editar-pr
     ListarPrestamosComponent,
     CrearPrestamosComponent,
     EditarPrestamosComponent,
+    CreateUserComponent,
+    LoginComponent,
 
 
   ],

@@ -73,7 +73,7 @@ export class EditarSocioComponent implements OnInit {
         if (this.id !== null) {
           this._socioService.actualizarSocio(this.id, SOCIO).subscribe(data => {
             console.log(SOCIO);
-            this.router.navigate(['/listar-socios']);
+            this.router.navigate(['/listar-socio']);
           });
         }
       }

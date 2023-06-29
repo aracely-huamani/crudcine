@@ -29,12 +29,14 @@ export class EditarPeliculaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.validarId();
+
+    this.validarId()
+
   }
 
   validarId() {
     if (this.id !== null) {
-      this.peliculaService.getPelicula(this.id).subscribe(data => {
+      this.peliculaService.viewPelicula(this.id).subscribe(data => {
         this.peliculaForm.setValue({
           titulo: data.titulo,
           genero: data.genero,
@@ -67,7 +69,7 @@ export class EditarPeliculaComponent implements OnInit {
         if (this.id !== null) {
           this.peliculaService.actualizarPelicula(this.id, pelicula).subscribe(data => {
             console.log(pelicula);
-            this.router.navigate(['/listar-peliculas']);
+            this.router.navigate(['/listar-pelicula']);
           });
         }
       }

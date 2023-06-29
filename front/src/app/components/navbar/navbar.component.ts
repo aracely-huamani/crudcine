@@ -108,6 +108,7 @@ export class NavbarComponent implements OnInit {
 
         }
     };
+    
 
     getTitle(){
       var titlee = this.location.prepareExternalUrl(this.location.path());

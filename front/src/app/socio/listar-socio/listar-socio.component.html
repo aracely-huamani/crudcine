@@ -6,42 +6,62 @@
       <div class="col-md-12">
         <div class="panel">
           <div class="panel-body">
-            <div class="col-md-12 col-sm-12" id="form" style="display:block;">
+            <div class="col-md-12 col-sm-12" id="list_alumnos">
               <div class="panel panel-filled">
                 <div class="panel-body">
+                  <div class="view-header">
+                    <div class="header-icon">
+                      <i class="pe page-header-icon pe-7s-note2"></i>
+                    </div>
+                    <div class="header-title">
+                      <small>Socios Registrados</small>
+                    </div>
+                    <hr>
+                  </div>
                   <div class="row">
-                    <div class="col-sm-12">
-                      <h5 class="m-t-xs">Lista de Socios</h5>
+                    <div class="col-sm-12 text-right">
+                      <a id="btnNuevo" class="btn btn-w-md btn-info" routerLink="/crear-socio">Nuevo Socio</a>
                     </div>
                   </div>
-                  <table class="table table-hover">
-                    <thead>
-                      <tr>
-                        <th>id</th>
-                        <th>Nombre</th>
-                        <th>Dirección</th>
-                        <th>Teléfono</th>
-                        <th>Directores Favoritos</th>
-                        <th>Actores Favoritos</th>
-                        <th>Géneros Preferidos</th>
-                        <th>Acciones</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let socio of listSocios">
-                        <td>{{ socio.id }}</td>
-                        <td>{{ socio.nombre }}</td>
-                        <td>{{ socio.direccion }}</td>
-                        <td>{{ socio.telefono }}</td>
-                        <td>{{ socio.directoresFavoritos }}</td>
-                        <td>{{ socio.actoresFavoritos }}</td>
-                        <td>{{ socio.generosPreferidos }}</td>
-                        <td>
-                            <button class="btn btn-w-md btn-danger" (click)="eliminarSocio(socio.id)">Eliminar</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <br>
+                  <br>
+                  <div>
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Nombre</th>
+                          <th>Dirección</th>
+                          <th>Teléfono</th>
+                          <th>Directores Favoritos</th>
+                          <th>Actores Favoritos</th>
+                          <th>Géneros Preferidos</th>
+                          <th>Acciones</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let socio of listSocios">
+                          <td>{{ socio.nombre }}</td>
+                          <td>{{ socio.direccion }}</td>
+                          <td>{{ socio.telefono }}</td>
+                          <td>{{ socio.directoresFavoritos }}</td>
+                          <td>{{ socio.actoresFavoritos }}</td>
+                          <td>{{ socio.generosPreferidos }}</td>
+                          <td>
+                            <button class="btn btn-w-md btn-sm btn-danger" (click)="eliminarSocio(socio.id)">
+                              <i class="pe pe-7s-trash text-accent"></i> Eliminar
+                            </button>
+                            <button class="btn btn-w-md btn-sm btn-danger" [routerLink]="['/editar-socio', socio.id]">
+                              <i class="pe pe-7s-pen text-accent"></i> Editar
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <br>
+                  <div class="text-right font-bold c-white y-value">
+                    <div id="val_a">Total Socios: {{ elementos }}</div>
+                  </div>
                 </div>
               </div>
             </div>
